@@ -4,7 +4,7 @@ This is a project to master fullstack development and some important core concep
 
 - Login
 - Sign up
-- Social Authentication
+- Social Authentication with Auth0
 - Database relationship
 - File upload
 - Dynamic routing
@@ -24,5 +24,7 @@ This is a project to master fullstack development and some important core concep
 - Animation
 - Pagination
 - Role based access control
+- Referral System
+- Form Handling
 - **Simple Live Chat Implementation**
 - **Simple Product Blog**
