@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import ReactLoading from "react-loading";
@@ -14,12 +14,26 @@ const Login = () => {
     password: Yup.string().required("Password is required"),
   });
 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    mode: "all",
+    resolver: yupResolver(validationSchema),
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.auth);
 
   const { message } = useSelector((state) => state.message);
   const [loading, setLoading] = useState(false);
+  const {
+    user: { user },
+  } = useSelector((state) => state.auth);
+
+  console.log(user.firstName);
 
   const onSubmit = (data) => {
     setLoading(true);
@@ -27,7 +41,7 @@ const Login = () => {
       .unwrap()
       .then(() => {
         notifyOnSuccess(
-          `Welcome back, ${data.firstName}. We are happy to have you.`
+          `Welcome back, ${user?.firstName} We are happy to have you.`
         );
         navigate("/", { replace: true });
         console.log(isLoggedIn);
@@ -38,14 +52,9 @@ const Login = () => {
       });
   };
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({
-    mode: "all",
-    resolver: yupResolver(validationSchema),
-  });
+  if (isLoggedIn) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="flex lg:flex-row lg:w-screen lg:justify-center lg:items-center font-nunito">

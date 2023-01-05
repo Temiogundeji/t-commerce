@@ -2,8 +2,13 @@ import React from "react";
 import { BiUser } from "react-icons/bi";
 import { FaSistrix } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const {
+    user: { user },
+  } = useSelector((state) => state.auth);
   return (
     <div className="md:px-5 md:py-2 md:shadow-md">
       <nav>
@@ -74,12 +79,16 @@ const Nav = () => {
             </div>
           </li>
           <li className="md:w-{100%}">
-            <Link
-              className="hover:text-orange-500 md:font-semibold hover:md:text-orange-500 md:text-blue-800"
-              to="/signup"
-            >
-              Sign up/Login
-            </Link>
+            {isLoggedIn ? (
+              `Welcome, ${user.firstName}`
+            ) : (
+              <Link
+                className="hover:text-orange-500 md:font-semibold hover:md:text-orange-500 md:text-blue-800"
+                to="/signup"
+              >
+                Sign up/Login
+              </Link>
+            )}
           </li>
           <li className="flex md:flex-row md:justify-center md:w-1/12 md:bg-blue-800 md:py-2 md:rounded-lg">
             <span className="md:text-sm md:text-white md:px-2">My Cart</span>

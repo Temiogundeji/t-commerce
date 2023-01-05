@@ -8,7 +8,6 @@ const joi = require("joi");
 const fs = require("fs");
 const mongoose = require("mongoose");
 const mailer = require("../utils/mailer");
-const user = require("./../models/user");
 
 module.exports.signup = handleAsync(async (req, res, next) => {
   const { firstName, lastName, email, phoneNumber, password } = req.body;
