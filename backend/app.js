@@ -3,10 +3,11 @@ require("dotenv").config({ path: path.resolve(process.cwd(), ".env") });
 const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
-const connectDB = require('./server');
+const connectDB = require("./server");
 const { expressLogger, logger } = require("./utils/logger");
 
 const usersRouter = require("./routes/user");
+const productRouter = require("./routes/product");
 
 const app = express();
 app.use(expressLogger);
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/api/users", usersRouter);
+app.use("/api/products", productRouter);
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.get("*", (req, res) => {

@@ -19,7 +19,9 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "Please include production quantity"],
     },
     price: {
-      type: [true, "Please include product price"],
+      type: Number,
+      default: 0,
+      required: [true, "Please include product price"],
     },
     image: {
       type: String,
