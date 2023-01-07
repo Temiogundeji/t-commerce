@@ -1,6 +1,7 @@
 const path = require("path");
 require("dotenv").config({ path: path.resolve(process.cwd(), ".env") });
 const express = require("express");
+const formidableMiddleware = require("express-formidable");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const connectDB = require("./server");
@@ -19,8 +20,24 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
+const events = [
+  {
+    event: "error",
+    action: (err) => {
+      if (err) {
+        return res.status(400).json({
+          status: "Fail",
+          message: "There was an error parsing the files",
+          error: err,
+        });
+      }
+    },
+  },
+];
+app.use(formidableMiddleware(events));
+
 app.use("/api/users", usersRouter);
-app.use("/api/products", productRouter);
+app.use("/api", productRouter);
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.get("*", (req, res) => {
