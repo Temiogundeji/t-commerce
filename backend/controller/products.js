@@ -68,20 +68,32 @@ module.exports.createProduct = handleAsync(async (req, res, next) => {
     }
 
     let product = await Product.create({
-      name:product_name,
+      name: product_name,
       description,
       rating,
       quantity,
       price,
       image: result.secure_url,
     });
-    res.send({ success: true, product });
+    res.send({
+      success: true,
+      product,
+      message: "Product created successfully",
+    });
   } catch (error) {
     res.status(400).send({
       succes: false,
       error: error.message,
     });
   }
+});
 
-  res.send({ success: true, product, message: "Product added successfully" });
+module.exports.getProducts = handleAsync(async (req, res, next) => {
+  const products = await Product.find();
+  if (products.length === 0) {
+    res.status(404).send({
+      message: "No product is available",
+    });
+  }
+  return res.send({ products });
 });

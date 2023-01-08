@@ -13,6 +13,7 @@ This is a project to master fullstack development and some important core concep
 - Product Search and Filter
 - Payment
 - CRUD
+- Containerization with Docker
 - State Management
 - Mailing
 - Profile
