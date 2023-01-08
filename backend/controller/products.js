@@ -10,8 +10,7 @@ const { promisify } = require("util");
 const { isFileValid } = require("../utils/file");
 
 module.exports.createProduct = handleAsync(async (req, res, next) => {
-  const { name, description, rating, quantity, price } = req.fields;
-  const form = formidable({ multiples: false, maxFileSize: 50 * 1024 * 1024 });
+  const { product_name, description, rating, quantity, price } = req.fields;
 
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -20,7 +19,7 @@ module.exports.createProduct = handleAsync(async (req, res, next) => {
   });
 
   const schema = joi.object({
-    name: joi
+    product_name: joi
       .string()
       .required()
       .error(new Error("Please include product name"))
@@ -43,7 +42,7 @@ module.exports.createProduct = handleAsync(async (req, res, next) => {
   });
 
   await schema.validateAsync({
-    name,
+    product_name,
     description,
     rating,
     quantity,
@@ -69,7 +68,7 @@ module.exports.createProduct = handleAsync(async (req, res, next) => {
     }
 
     let product = await Product.create({
-      name,
+      name:product_name,
       description,
       rating,
       quantity,
