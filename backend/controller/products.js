@@ -108,3 +108,15 @@ module.exports.getProduct = handleAsync(async (req, res, next) => {
   }
   return res.send(product.toJSON());
 });
+
+module.exports.getProductByName = handleAsync(async (req, res, next) => {
+  const { name } = req.params;
+  const product = await Product.findOne({ name: name }).exec();
+  if (product === null) {
+    res.status(404).send({
+      message: "Product not found",
+    });
+  }
+  return res.send(product.toJSON());
+});
+
