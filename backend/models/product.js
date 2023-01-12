@@ -26,6 +26,11 @@ const ProductSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: [true, "Please include product category"],
+    },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }
 );

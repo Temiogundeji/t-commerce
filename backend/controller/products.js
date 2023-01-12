@@ -119,4 +119,3 @@ module.exports.getProductByName = handleAsync(async (req, res, next) => {
   }
   return res.send(product.toJSON());
 });
-

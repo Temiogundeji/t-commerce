@@ -111,9 +111,9 @@ module.exports.authMiddle = handleAsync(async (req, res, next) => {
   const tokenString = authToken.split("Bearer")[1].trim();
   if (!tokenString) throw new Error("Invalid credentials");
   const decoded = jwt.verify(tokenString, process.env.JWT_SECRET);
-  const organization = await Organization.findById(decoded?.id).exec();
+  const user = await User.findById(decoded?.id).exec();
 
   if (!decoded || !organization) throw new Error("Invalid credentials");
-  req.organization = organization;
+  req.user = user;
   next();
 });
