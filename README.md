@@ -7,6 +7,7 @@ This is a project to master fullstack development and some important core concep
 - Social Authentication with Auth0
 - Database relationship
 - File upload
+- Containerization
 - Dynamic routing
 - Error Handling
 - Schedule Jobs
