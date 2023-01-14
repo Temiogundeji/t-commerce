@@ -30,3 +30,5 @@ This is a project to master fullstack development and some important core concep
 - Form Handling
 - **Simple Live Chat Implementation**
 - **Simple Product Blog**
+
+At the end of this project, I should have a deep understanding of the concepts highlighted above.
