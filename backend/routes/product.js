@@ -12,9 +12,9 @@ const { authMiddle } = require("../controller/users");
 
 router
   .route("/products")
-  .post(authMiddle, createProduct)
-  .get(authMiddle, getProducts);
-router.route("/product/:id").get(authMiddle, getProduct);
-router.route("/product/:name").get(authMiddle, getProductByName);
+  .post(createProduct)
+  .get(getProducts);
+router.route("/product/:id").get(getProduct);
+router.route("/product/:name").get(getProductByName);
 
 module.exports = router;

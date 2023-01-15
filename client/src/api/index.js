@@ -7,15 +7,15 @@ export const api = axios.create({
   },
 });
 
-const baseURL = "/api/users";
+const baseURL = "/api";
 
 export const endpoints = {
   me: `${baseURL}/me`,
-  LOGIN: `${baseURL}/auth/login`,
-  SIGNUP: `${baseURL}/auth/signup`,
-  RESET_PASSWORD: `${baseURL}/update/password/reset`,
-  ADD_TO_WISHLIST: `${baseURL}/wishlist/add`,
-  DELETE_FROM_WISHLIST: `${baseURL}/wishlist/delete`,
+  LOGIN: `${baseURL}/users/auth/login`,
+  SIGNUP: `${baseURL}/users/auth/signup`,
+  RESET_PASSWORD: `${baseURL}/users/update/password/reset`,
+  ADD_TO_WISHLIST: `${baseURL}/users/wishlist/add`,
+  DELETE_FROM_WISHLIST: `${baseURL}/users/wishlist/delete`,
   FETCH_PRODUCTS: `${baseURL}/products`,
   NEW_PRODUCTS: `${baseURL}/products/new`,
   FETCH_PRODUCT: (id) => `${baseURL}/products/${id}`,

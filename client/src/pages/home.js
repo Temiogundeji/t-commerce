@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../components/nav";
 import Slider from "../components/slider";
 import SideFilter from "../components/side-filter";
 import Heading from "../components/heading";
 import ProductList from "../components/product-list";
-import RecommendedProduct from "../components/recommended-product";
 import RecommendedProductList from "../components/recommended-product-list";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../slices/product";
 
 const products = [
   { id: 1, title: "Nex 18", price: 345.0 },
@@ -25,6 +27,15 @@ const recommendedProducts = [
 ];
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  console.log(products);
+
   return (
     <div className="font-nunito">
       <Nav />

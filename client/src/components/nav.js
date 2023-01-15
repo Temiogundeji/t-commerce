@@ -12,10 +12,10 @@ const Nav = () => {
     user: { user },
   } = useSelector((state) => state.auth);
   return (
-    <div className="md:px-5 md:py-2 md:shadow-md">
+    <div className="md:px-5 md:shadow-md">
       <nav className="">
         <ul className="flex flex-col md:flex-row lg:flex-row md:items-center md:justify-between md:p-0 p-4">
-          <li className="md:w-3/12 flex flex-row justify-between mb-10">
+          <li className="md:w-3/12 flex flex-row justify-between mb-10 md:mb-5">
             <a href="/">
               <img
                 className="md:h-12 h-12"
@@ -45,9 +45,7 @@ const Nav = () => {
           </li>
           <div
             className={
-              !showNav
-                ? "hidden"
-                : "transition-opacity ease-in delay-150"
+              !showNav ? "hidden" : "transition-opacity ease-in delay-150"
             }
           >
             <li className="border-y-2 border-black-500 py-3">
@@ -69,12 +67,12 @@ const Nav = () => {
           </div>
           <li className="md:w-4/12">
             <form>
-              <div className="flex md:flex-row md:items-center mt-5">
+              <div className="flex md:flex-row md:items-center mt-5 md:mt-0">
                 <input
                   placeholder="Search for product, brand"
                   name="search-box"
                   className="md:border-2 border-2 border-stone-400 md:border-stone-400 rounded-tl-lg md:rounded-tl-lg rounded-bl-md md:rounded-bl-md py-2 md:py-2 md:px-5 px-5 w-full"
-                  type="text"
+                  type="text" 
                 />
                 <button className="md:bg-orange-500 bg-orange-500 h-11 md:h-11 w-10 md:w-10 rounded-tr-lg md:rounded-tr-lg rounded-br-lg  md:rounded-br-lg flex items-center md:items-center justify-center md:justify-center">
                   <FaSistrix
@@ -103,6 +101,13 @@ const Nav = () => {
               </Link>
             )}
           </li>
+          {isLoggedIn ? (
+            <li className="md:w-{100%}">
+              <div className="md:bg-slate-200 md:p-3 md:rounded-full">
+                <a href="#">Logout</a>
+              </div>
+            </li>
+          ) : null}
           <li className="flex md:flex-row md:justify-center md:w-1/12 md:bg-blue-800 md:py-2 md:rounded-lg">
             <span className="md:text-sm md:text-white md:px-2">My Cart</span>
             <span className="md:bg-white md:px-2 md:rounded-md">1</span>
