@@ -4,8 +4,7 @@ import { endpoints } from "../api";
 const fetchProduct = () => {
   return axios.get(endpoints.FETCH_PRODUCTS).then(
     (response) => {
-      console.log(response.data);
-      return response.data;
+      return response;
     },
     (error) => {
       throw new Error(error);

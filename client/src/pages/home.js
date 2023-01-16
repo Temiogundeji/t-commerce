@@ -28,16 +28,16 @@ const recommendedProducts = [
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.products);
+  const state = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  console.log(products);
+  console.log(state);
 
   return (
-    <div className="font-nunito">
+    <div className="font-nunito-normal">
       <Nav />
       <div className="flex md:flex-row md:justify-center md:items-start md:h-full md:w-full md:gap-2">
         <SideFilter />

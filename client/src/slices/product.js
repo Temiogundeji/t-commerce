@@ -3,12 +3,12 @@ import productService from "../services/product.service";
 import { setMessage } from "./message";
 
 export const fetchProducts = createAsyncThunk(
-  "product/fetch",
+  "products/fetch",
   async (thunkAPI) => {
     try {
       const response = await productService.fetchProduct();
-      thunkAPI.dispatch(setMessage(response.data.message));
-      return response.data.user;
+      console.log(response.data.products)
+      return response.data.products;
     } catch (error) {
       const message =
         (error.response &&
@@ -24,11 +24,11 @@ export const fetchProducts = createAsyncThunk(
 
 const initialState = [];
 const productSlice = createSlice({
-  name: "products",
+  name: "products/fetch",
   initialState,
   reducers: {
     [fetchProducts.fulfilled]: (state, action) => {
-      state.products = action.payload.products;
+      state.products = action.payload;
     },
     [fetchProducts.rejected]: (state, action) => {
       state.error = action.payload.error;
