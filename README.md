@@ -1,6 +1,6 @@
 # T Commerce
 
-This is a project to master fullstack development and some important core concepts such as:
+This is a project to master some important we development core concepts such as:
 
 - Login
 - Sign up
