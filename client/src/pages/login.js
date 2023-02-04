@@ -29,9 +29,7 @@ const Login = () => {
 
   const { message } = useSelector((state) => state.message);
   const [loading, setLoading] = useState(false);
-  const {
-    user: { user },
-  } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   console.log(user.firstName);
 
@@ -41,7 +39,7 @@ const Login = () => {
       .unwrap()
       .then(() => {
         notifyOnSuccess(
-          `Welcome back, ${user?.firstName} We are happy to have you.`
+          `Welcome back, ${user?.username} We are happy to have you.`
         );
         navigate("/", { replace: true });
         console.log(isLoggedIn);

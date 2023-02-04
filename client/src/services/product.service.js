@@ -1,7 +1,7 @@
 import axios from "axios";
 import { endpoints } from "../api";
 
-const fetchProduct = () => {
+const fetchProducts = () => {
   return axios.get(endpoints.FETCH_PRODUCTS).then(
     (response) => {
       return response;
@@ -13,7 +13,7 @@ const fetchProduct = () => {
 };
 
 const productService = {
-  fetchProduct,
+  fetchProducts,
 };
 
 export default productService;

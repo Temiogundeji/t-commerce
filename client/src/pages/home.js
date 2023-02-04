@@ -7,7 +7,7 @@ import ProductList from "../components/product-list";
 import RecommendedProductList from "../components/recommended-product-list";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../slices/product";
+import { fetchProducts } from "../slices/products";
 
 const products = [
   { id: 1, title: "Nex 18", price: 345.0 },
@@ -29,12 +29,11 @@ const recommendedProducts = [
 const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  console.log(state);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
-  console.log(state);
 
   return (
     <div className="font-nunito-normal">

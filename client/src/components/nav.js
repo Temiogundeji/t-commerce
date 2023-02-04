@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { FaSistrix } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../slices/auth";
 
 const Nav = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [showNav, setShowNav] = useState(false);
-  console.log(showNav);
-  const {
-    user: { user },
-  } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
+
+  console.log(user);
   return (
     <div className="md:px-5 md:shadow-md">
       <nav className="">
@@ -72,7 +73,7 @@ const Nav = () => {
                   placeholder="Search for product, brand"
                   name="search-box"
                   className="md:border-2 border-2 border-stone-400 md:border-stone-400 rounded-tl-lg md:rounded-tl-lg rounded-bl-md md:rounded-bl-md py-2 md:py-2 md:px-5 px-5 w-full"
-                  type="text" 
+                  type="text"
                 />
                 <button className="md:bg-orange-500 bg-orange-500 h-11 md:h-11 w-10 md:w-10 rounded-tr-lg md:rounded-tr-lg rounded-br-lg  md:rounded-br-lg flex items-center md:items-center justify-center md:justify-center">
                   <FaSistrix
@@ -91,7 +92,7 @@ const Nav = () => {
           </li>
           <li className="md:w-{100%}">
             {isLoggedIn ? (
-              `Welcome, ${user.firstName}`
+              `Welcome, ${user?.username}`
             ) : (
               <Link
                 className="hover:text-orange-500 md:font-semibold hover:md:text-orange-500 md:text-blue-800"
@@ -104,7 +105,7 @@ const Nav = () => {
           {isLoggedIn ? (
             <li className="md:w-{100%}">
               <div className="md:bg-slate-200 md:p-3 md:rounded-full">
-                <a href="#">Logout</a>
+                <button onClick={dispatch(logout)}>Logout</button>
               </div>
             </li>
           ) : null}

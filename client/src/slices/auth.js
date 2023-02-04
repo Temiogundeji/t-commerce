@@ -36,7 +36,6 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const data = await AuthService.login(email, password);
-     
       return { user: data.user };
     } catch (error) {
       const message =
@@ -50,6 +49,8 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+//write a function to calculate the area of a triangle
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   await AuthService.logout();
@@ -72,7 +73,6 @@ const authSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
-      console.log(action.payload);
       state.user = action.payload.user;
     },
     [login.rejected]: (state, action) => {
